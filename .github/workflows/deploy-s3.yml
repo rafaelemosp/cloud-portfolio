@@ -22,15 +22,34 @@ jobs:
 
     steps:
       - name: Download repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Verify GitHub OIDC identity
+        shell: bash
+        run: |
+          token_response="$(curl --fail --silent --show-error \
+            --header "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")"
+          id_token="$(printf '%s' "${token_response}" | \
+            python3 -c 'import json, sys; print(json.load(sys.stdin)["value"])')"
+          ID_TOKEN="${id_token}" python3 -c '
+          import base64, json, os
+          payload = os.environ["ID_TOKEN"].split(".")[1]
+          payload += "=" * (-len(payload) % 4)
+          claims = json.loads(base64.urlsafe_b64decode(payload))
+          safe_keys = ("iss", "aud", "sub", "repository", "ref")
+          print(json.dumps({key: claims.get(key) for key in safe_keys}, indent=2))
+          '
 
       - name: Authenticate with AWS
         uses: aws-actions/configure-aws-credentials@v6.1.0
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-to-assume: arn:aws:iam::385168914120:role/CloudPortfolioGitHubDeploy
           aws-region: ${{ vars.AWS_REGION }}
           role-session-name: cloud-portfolio-deployment
           mask-aws-account-id: true
+          allowed-account-ids: 385168914120
+          retry-max-attempts: 2
 
       - name: Upload static assets
         run: >-
