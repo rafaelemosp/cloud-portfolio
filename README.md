@@ -5,8 +5,8 @@ infrastructure and technical support learning journey.
 
 ## Project status
 
-The website is currently in development. An Amazon S3 bucket has been created,
-but the website upload and static hosting configuration are still pending.
+The website is deployed to Amazon S3. Every push to the `main` branch triggers
+an automatic deployment through GitHub Actions using secure AWS OIDC.
 
 ## Technologies
 

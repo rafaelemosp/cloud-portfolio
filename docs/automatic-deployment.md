@@ -31,7 +31,7 @@ policy, replacing `AWS_ACCOUNT_ID` with your 12-digit AWS account number:
       "Condition": {
         "StringEquals": {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-          "token.actions.githubusercontent.com:sub": "repo:rafaelemosp/cloud-portfolio:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub": "repo:rafaelemosp@307802137/cloud-portfolio@1308239901:ref:refs/heads/main"
         }
       }
     }
@@ -39,8 +39,8 @@ policy, replacing `AWS_ACCOUNT_ID` with your 12-digit AWS account number:
 }
 ```
 
-This trust policy restricts deployment access to the `main` branch of this
-specific GitHub repository.
+This trust policy uses GitHub's immutable account and repository IDs to restrict
+deployment access to the `main` branch of this specific repository.
 
 ## 3. Give the role permission to deploy
 
@@ -55,7 +55,7 @@ S3 bucket name:
       "Sid": "ListPortfolioBucket",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME"
+      "Resource": "arn:aws:s3:::rafael-cloud-portfolio-2026"
     },
     {
       "Sid": "DeployPortfolioFiles",
@@ -65,7 +65,7 @@ S3 bucket name:
         "s3:DeleteObject",
         "s3:GetObject"
       ],
-      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+      "Resource": "arn:aws:s3:::rafael-cloud-portfolio-2026/*"
     }
   ]
 }
