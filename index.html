@@ -19,6 +19,8 @@
 
 <body>
 
+    <canvas id="network-background" aria-hidden="true"></canvas>
+
     <header class="site-header">
         <p class="logo">rafael@cloud:~$</p>
 
@@ -51,7 +53,7 @@
                         rafael@cloud:~$ whoami
                     </p>
 
-                    <h1 id="typing-name"></h1>
+                    <h1 id="typing-name">Rafael Lemos</h1>
 
                     <h2>Building Cloud &amp; Infrastructure Skills</h2>
 
@@ -86,6 +88,46 @@
 
             </div>
 
+        </section>
+
+        <section class="cloud-status" aria-labelledby="cloud-status-title">
+            <div class="status-header">
+                <div>
+                    <p class="terminal-command">$ system-status</p>
+                    <h2 id="cloud-status-title">Cloud Deployment Status</h2>
+                </div>
+
+                <span class="online-status status-in-progress">
+                    <span class="online-dot"></span>
+                    In Development
+                </span>
+            </div>
+
+            <div class="status-grid">
+                <article class="status-card">
+                    <span class="status-label">Region</span>
+                    <strong>ap-southeast-2</strong>
+                    <small>Sydney, Australia</small>
+                </article>
+
+                <article class="status-card">
+                    <span class="status-label">Hosting</span>
+                    <strong>S3 Bucket Ready</strong>
+                    <small>Website upload pending</small>
+                </article>
+
+                <article class="status-card">
+                    <span class="status-label">Version Control</span>
+                    <strong>Git</strong>
+                    <small>Local repository</small>
+                </article>
+
+                <article class="status-card">
+                    <span class="status-label">HTTPS / CDN</span>
+                    <strong>Coming Soon</strong>
+                    <small>Amazon CloudFront</small>
+                </article>
+            </div>
         </section>
 
         <section id="about">
