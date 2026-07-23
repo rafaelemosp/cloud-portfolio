@@ -248,16 +248,22 @@ if (networkCanvas) {
     function drawPackets(layout, elapsed) {
         routes.forEach((route, routeIndex) => {
             const geometry = getRouteGeometry(route, layout);
-            const progress = (elapsed * 0.00009 + routeIndex * 0.137) % 1;
-            const point = quadraticPoint(geometry, progress);
+            const baseProgress = (elapsed * 0.00012 + routeIndex * 0.137) % 1;
 
-            ctx.beginPath();
-            ctx.arc(point.x, point.y, 2.6, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(126, 231, 135, 0.95)";
-            ctx.shadowColor = "rgba(126, 231, 135, 0.95)";
-            ctx.shadowBlur = 16;
-            ctx.fill();
-            ctx.shadowBlur = 0;
+            [0, 0.46].forEach((offset, packetIndex) => {
+                const progress = (baseProgress + offset) % 1;
+                const point = quadraticPoint(geometry, progress);
+
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, packetIndex === 0 ? 3.2 : 2.3, 0, Math.PI * 2);
+                ctx.fillStyle = packetIndex === 0
+                    ? "rgba(126, 255, 150, 1)"
+                    : "rgba(126, 231, 135, 0.82)";
+                ctx.shadowColor = "rgba(90, 255, 125, 1)";
+                ctx.shadowBlur = 20;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
         });
     }
 
