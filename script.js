@@ -84,8 +84,9 @@ if (networkCanvas) {
     ];
 
     function getMapLayout() {
-        const availableWidth = width * 0.96;
-        const availableHeight = height * 0.82;
+        const isWideScreen = width >= 900;
+        const availableWidth = width * (isWideScreen ? 0.72 : 0.96);
+        const availableHeight = height * (isWideScreen ? 0.74 : 0.7);
         const scale = Math.min(
             availableWidth / mapWidth,
             availableHeight / mapHeight
@@ -93,8 +94,10 @@ if (networkCanvas) {
 
         return {
             scale,
-            offsetX: (width - mapWidth * scale) / 2,
-            offsetY: (height - mapHeight * scale) / 2
+            offsetX: isWideScreen
+                ? width * 0.34
+                : (width - mapWidth * scale) / 2,
+            offsetY: height * (isWideScreen ? 0.12 : 0.18)
         };
     }
 
@@ -123,23 +126,44 @@ if (networkCanvas) {
         ctx.save();
         ctx.translate(layout.offsetX, layout.offsetY);
         ctx.scale(layout.scale, layout.scale);
-        ctx.fillStyle = "rgba(88, 166, 255, 0.11)";
-        ctx.strokeStyle = "rgba(88, 166, 255, 0.28)";
-        ctx.lineWidth = 1.4 / layout.scale;
-        ctx.shadowColor = "rgba(31, 111, 235, 0.22)";
-        ctx.shadowBlur = 18 / layout.scale;
+        ctx.fillStyle = "rgba(19, 75, 139, 0.3)";
+        ctx.strokeStyle = "rgba(72, 159, 255, 0.62)";
+        ctx.lineWidth = 1.1 / layout.scale;
+        ctx.shadowColor = "rgba(31, 111, 235, 0.48)";
+        ctx.shadowBlur = 22 / layout.scale;
 
         continents.forEach((continent) => {
-            ctx.beginPath();
-            ctx.moveTo(continent[0][0], continent[0][1]);
+            const shape = new Path2D();
+            shape.moveTo(continent[0][0], continent[0][1]);
 
             for (let i = 1; i < continent.length; i += 1) {
-                ctx.lineTo(continent[i][0], continent[i][1]);
+                shape.lineTo(continent[i][0], continent[i][1]);
             }
 
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
+            shape.closePath();
+            ctx.fill(shape);
+            ctx.stroke(shape);
+
+            ctx.save();
+            ctx.clip(shape);
+            ctx.shadowBlur = 0;
+
+            for (let x = 30; x < mapWidth; x += 12) {
+                for (let y = 35; y < mapHeight; y += 12) {
+                    const variation = (x * 17 + y * 31) % 23;
+
+                    if (variation < 9) {
+                        ctx.beginPath();
+                        ctx.arc(x, y, variation % 3 === 0 ? 1.25 : 0.7, 0, Math.PI * 2);
+                        ctx.fillStyle = variation % 3 === 0
+                            ? "rgba(88, 166, 255, 0.62)"
+                            : "rgba(88, 166, 255, 0.28)";
+                        ctx.fill();
+                    }
+                }
+            }
+
+            ctx.restore();
         });
 
         ctx.shadowBlur = 0;
@@ -173,9 +197,12 @@ if (networkCanvas) {
                 geometry.end.x,
                 geometry.end.y
             );
-            ctx.strokeStyle = "rgba(88, 166, 255, 0.3)";
-            ctx.lineWidth = 1.15;
+            ctx.strokeStyle = "rgba(65, 151, 255, 0.72)";
+            ctx.lineWidth = 1.35;
+            ctx.shadowColor = "rgba(30, 116, 255, 0.65)";
+            ctx.shadowBlur = 7;
             ctx.stroke();
+            ctx.shadowBlur = 0;
         });
     }
 
@@ -187,14 +214,14 @@ if (networkCanvas) {
 
             ctx.beginPath();
             ctx.arc(point.x, point.y, radius * 2.5, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(88, 166, 255, 0.055)";
+            ctx.fillStyle = "rgba(38, 129, 255, 0.18)";
             ctx.fill();
 
             ctx.beginPath();
             ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
             ctx.fillStyle = "rgba(88, 166, 255, 0.9)";
             ctx.shadowColor = "rgba(88, 166, 255, 0.8)";
-            ctx.shadowBlur = 14;
+            ctx.shadowBlur = 24;
             ctx.fill();
 
             ctx.beginPath();
@@ -225,10 +252,10 @@ if (networkCanvas) {
             const point = quadraticPoint(geometry, progress);
 
             ctx.beginPath();
-            ctx.arc(point.x, point.y, 2.2, 0, Math.PI * 2);
+            ctx.arc(point.x, point.y, 2.6, 0, Math.PI * 2);
             ctx.fillStyle = "rgba(126, 231, 135, 0.95)";
             ctx.shadowColor = "rgba(126, 231, 135, 0.95)";
-            ctx.shadowBlur = 12;
+            ctx.shadowBlur = 16;
             ctx.fill();
             ctx.shadowBlur = 0;
         });

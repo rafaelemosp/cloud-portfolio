@@ -39,16 +39,13 @@ body::before {
     pointer-events: none;
 
     background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(88, 166, 255, 0.12),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 80% 65%,
-            rgba(31, 111, 235, 0.07),
-            transparent 30%
-        );
+        radial-gradient(circle at 72% 35%,
+            rgba(25, 104, 210, 0.16),
+            transparent 42%),
+        linear-gradient(90deg,
+            #030914 0%,
+            #061124 48%,
+            #07152b 100%);
 }
 
 body::after {
@@ -59,14 +56,17 @@ body::after {
     pointer-events: none;
 
     background:
-        radial-gradient(circle at 20% 20%,
-            rgba(88, 166, 255, 0.14),
-            transparent 32%),
-        radial-gradient(circle at 80% 65%,
-            rgba(31, 111, 235, 0.06),
-            transparent 30%),
-        linear-gradient(rgba(13, 17, 23, 0.82),
-            rgba(13, 17, 23, 0.96));
+        radial-gradient(circle at 72% 35%,
+            rgba(30, 116, 255, 0.09),
+            transparent 38%),
+        linear-gradient(90deg,
+            rgba(3, 9, 20, 0.96) 0%,
+            rgba(5, 12, 25, 0.9) 27%,
+            rgba(5, 13, 28, 0.42) 55%,
+            rgba(3, 10, 22, 0.18) 100%),
+        linear-gradient(180deg,
+            rgba(3, 8, 18, 0.16),
+            rgba(3, 8, 18, 0.72));
 
     animation: glow-shift 10s ease-in-out infinite alternate;
 }
