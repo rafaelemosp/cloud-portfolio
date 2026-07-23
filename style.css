@@ -48,6 +48,18 @@ body::before {
             #07152b 100%);
 }
 
+.home-page::before {
+    background-image:
+        linear-gradient(90deg,
+            rgba(3, 9, 20, 0.42) 0%,
+            rgba(3, 9, 20, 0.08) 54%,
+            rgba(3, 9, 20, 0.16) 100%),
+        url("images/social-preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body::after {
     content: "";
     position: fixed;
@@ -80,6 +92,7 @@ body::after {
     height: 100%;
     z-index: -3;
     pointer-events: none;
+    opacity: 0.42;
 }
 
 a {

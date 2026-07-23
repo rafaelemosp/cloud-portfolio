@@ -265,7 +265,6 @@ if (networkCanvas) {
         const layout = getMapLayout();
 
         ctx.clearRect(0, 0, width, height);
-        drawWorldMap(layout);
         drawRoutes(layout);
         drawHubs(layout, elapsed);
 
