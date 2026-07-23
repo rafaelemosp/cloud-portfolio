@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <link rel="stylesheet" href="style.css?v=20260723-5">
+    <link rel="stylesheet" href="style.css?v=20260723-6">
 </head>
 
 <body class="home-page">
@@ -36,7 +36,13 @@
     <header class="site-header">
         <p class="logo">rafael@cloud:~$</p>
 
-        <nav>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="primary-navigation">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#education">Education</a>
@@ -486,7 +492,7 @@
         <p>Process completed successfully.</p>
     </footer>
 
-    <script src="script.js?v=20260723-4"></script>
+    <script src="script.js?v=20260723-6"></script>
 
 </body>
 
