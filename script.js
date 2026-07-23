@@ -295,3 +295,67 @@ if (networkCanvas) {
         handleMotionPreferenceChange
     );
 }
+
+const projectCards = Array.from(
+    document.querySelectorAll(".project-card[data-category]")
+);
+const filterButtons = Array.from(
+    document.querySelectorAll(".filter-button[data-filter]")
+);
+
+const projectIconLabels = ["AWS", "SRV", "COM", "NET", "SEC", "ICT"];
+
+projectCards.forEach((card, cardIndex) => {
+    const icon = card.querySelector(".project-icon");
+
+    if (icon && projectIconLabels[cardIndex]) {
+        icon.textContent = projectIconLabels[cardIndex];
+    }
+});
+
+filterButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", button.classList.contains("active"));
+
+    button.addEventListener("click", () => {
+        const selectedFilter = button.dataset.filter;
+
+        filterButtons.forEach((candidate) => {
+            const isActive = candidate === button;
+            candidate.classList.toggle("active", isActive);
+            candidate.setAttribute("aria-pressed", isActive);
+        });
+
+        projectCards.forEach((card) => {
+            const categories = card.dataset.category.split(" ");
+            const shouldShow =
+                selectedFilter === "all" || categories.includes(selectedFilter);
+
+            card.classList.toggle("is-hidden", !shouldShow);
+        });
+    });
+});
+
+const revealElements = document.querySelectorAll(
+    "main > section, .project-card, .education-card, .skill-category"
+);
+
+if (reducedMotionQuery.matches || !("IntersectionObserver" in window)) {
+    revealElements.forEach((element) => element.classList.add("is-visible"));
+} else {
+    const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12 }
+    );
+
+    revealElements.forEach((element) => {
+        element.classList.add("reveal-ready");
+        revealObserver.observe(element);
+    });
+}

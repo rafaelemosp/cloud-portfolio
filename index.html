@@ -8,6 +8,18 @@
 
     <title>Rafael Lemos | Cloud Portfolio</title>
 
+    <meta name="description" content="Cloud Engineering portfolio of Rafael Lemos, featuring AWS, Windows Server, Linux, networking, cybersecurity and infrastructure projects.">
+    <meta name="author" content="Rafael Lemos">
+    <meta name="theme-color" content="#0d1117">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rafael Lemos | Cloud Engineering Portfolio">
+    <meta property="og:description" content="Hands-on cloud, infrastructure, networking and cybersecurity projects.">
+    <meta property="og:url" content="http://rafael-cloud-portfolio-2026.s3-website-ap-southeast-2.amazonaws.com/">
+    <meta property="og:image" content="http://rafael-cloud-portfolio-2026.s3-website-ap-southeast-2.amazonaws.com/images/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -27,6 +39,7 @@
         <nav>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
             <a href="#projects">Projects</a>
             <a href="#journey">Journey</a>
             <a href="#contact">Contact</a>
@@ -82,12 +95,27 @@
                             target="_blank" rel="noopener noreferrer">
                             LinkedIn
                         </a>
+
+                        <a class="secondary-button" href="output/pdf/Rafael-Lemos-Resume.pdf" download>
+                            Download Résumé
+                        </a>
                     </div>
 
                 </div>
 
             </div>
 
+        </section>
+
+        <section class="highlights" aria-labelledby="highlights-title">
+            <p class="terminal-command">$ portfolio-summary</p>
+            <h2 id="highlights-title">Project Highlights</h2>
+            <div class="highlight-grid">
+                <article><strong>6</strong><span>Documented Projects</span></article>
+                <article><strong>2</strong><span>Cluster Nodes</span></article>
+                <article><strong>2</strong><span>Server Platforms</span></article>
+                <article><strong>100%</strong><span>Automated AWS Deployment</span></article>
+            </div>
         </section>
 
         <section class="cloud-status" aria-labelledby="cloud-status-title">
@@ -176,38 +204,40 @@
 
             <h2>Skills</h2>
 
-            <div class="skill-list">
-                <span>AWS Fundamentals</span>
-                <span>Amazon S3</span>
-                <span>IAM Fundamentals</span>
-                <span>Windows Server</span>
-                <span>Active Directory</span>
-                <span>Linux</span>
-                <span>Networking</span>
-                <span>DNS</span>
-                <span>DHCP</span>
-                <span>Hyper-V</span>
-                <span>Failover Clustering</span>
-                <span>TrueNAS</span>
-                <span>Nextcloud</span>
-                <span>SMTP / IMAP</span>
-                <span>OSPF</span>
-                <span>Cisco Packet Tracer</span>
-                <span>Cybersecurity Awareness</span>
-                <span>Risk Assessment</span>
-                <span>ICT Project Planning</span>
-                <span>Leadership</span>
-                <span>Team Collaboration</span>
-                <span>Multidisciplinary Teamwork</span>
+            <div class="skill-categories">
+                <article class="skill-category"><h3>Cloud</h3><div class="skill-list"><span>AWS Fundamentals</span><span>Amazon S3</span><span>IAM</span><span>GitHub Actions</span><span>OIDC</span></div></article>
+                <article class="skill-category"><h3>Servers &amp; Virtualisation</h3><div class="skill-list"><span>Windows Server</span><span>Linux</span><span>Active Directory</span><span>Hyper-V</span><span>Failover Clustering</span><span>TrueNAS</span></div></article>
+                <article class="skill-category"><h3>Networking</h3><div class="skill-list"><span>TCP/IP</span><span>DNS</span><span>DHCP</span><span>OSPF</span><span>Cisco Packet Tracer</span><span>SMTP / IMAP</span></div></article>
+                <article class="skill-category"><h3>Security &amp; Planning</h3><div class="skill-list"><span>Cybersecurity Awareness</span><span>Risk Assessment</span><span>Access Control</span><span>ICT Project Planning</span></div></article>
+                <article class="skill-category"><h3>Professional</h3><div class="skill-list"><span>Leadership</span><span>Team Collaboration</span><span>Multidisciplinary Teamwork</span><span>Customer Care</span><span>Confidentiality</span></div></article>
+            </div>
+        </section>
+
+        <section id="education">
+            <p class="terminal-command">rafael@cloud:~$ cat education.log</p>
+            <h2>Education &amp; Development</h2>
+            <div class="education-grid">
+                <article class="education-card"><span class="education-year">2026 — Current</span><h3>Diploma of Information Technology</h3><p>Advanced Networking and Cloud Engineering at TAFE Queensland.</p><small>Expected completion: December 2026</small></article>
+                <article class="education-card"><span class="education-year">In Progress</span><h3>AWS Academy Cloud Foundations</h3><p>Building practical knowledge of AWS services, security, architecture and cloud economics.</p><small>Cloud Practitioner pathway</small></article>
+                <article class="education-card"><span class="education-year">2022</span><h3>Pathology Collection</h3><p>TAFE Queensland qualification supporting nearly three years of Australian healthcare experience.</p><small>Accuracy · Privacy · Patient care</small></article>
             </div>
         </section>
 
         <section id="projects">
             <h2>Projects</h2>
 
+            <div class="project-filters" role="group" aria-label="Filter projects">
+                <button class="filter-button active" type="button" data-filter="all">All</button>
+                <button class="filter-button" type="button" data-filter="cloud">Cloud</button>
+                <button class="filter-button" type="button" data-filter="servers">Servers</button>
+                <button class="filter-button" type="button" data-filter="networking">Networking</button>
+                <button class="filter-button" type="button" data-filter="security">Security</button>
+                <button class="filter-button" type="button" data-filter="planning">Planning</button>
+            </div>
+
             <div class="project-grid">
 
-                <article class="project-card">
+                <article class="project-card" data-category="cloud">
                     <div class="project-card-header">
                         <p class="project-icon">☁</p>
 
@@ -235,7 +265,7 @@
                     </a>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="servers networking">
                     <div class="project-card-header">
                         <p class="project-icon">▣</p>
 
@@ -266,7 +296,7 @@
                     </a>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="servers networking">
                     <div class="project-card-header">
                         <p class="project-icon">⬡</p>
 
@@ -296,7 +326,7 @@
                     </a>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="networking">
                     <div class="project-card-header">
                         <p class="project-icon">◎</p>
                         <span class="status-badge status-complete">Completed</span>
@@ -317,7 +347,7 @@
                     </a>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="security">
                     <div class="project-card-header">
                         <p class="project-icon">◆</p>
                         <span class="status-badge status-complete">Completed</span>
@@ -338,7 +368,7 @@
                     </a>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="planning">
                     <div class="project-card-header">
                         <p class="project-icon">▤</p>
                         <span class="status-badge status-complete">Completed</span>
@@ -435,6 +465,10 @@
                     href="https://www.linkedin.com/in/rafael-lemos-pereira-5443aa358/"
                     target="_blank" rel="noopener noreferrer">
                     LinkedIn
+                </a>
+
+                <a class="secondary-button" href="output/pdf/Rafael-Lemos-Resume.pdf" download>
+                    Download Résumé
                 </a>
             </div>
         </section>

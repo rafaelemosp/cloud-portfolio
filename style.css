@@ -382,6 +382,152 @@ h3 {
     border-color: var(--green);
 }
 
+.skill-categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.skill-category,
+.education-card,
+.highlight-grid article {
+    padding: 22px;
+    background: rgba(22, 27, 34, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.skill-category h3 {
+    margin-top: 0;
+    color: var(--blue);
+}
+
+/* Portfolio highlights and education */
+
+.highlight-grid,
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.highlight-grid article {
+    display: flex;
+    min-height: 130px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.highlight-grid strong {
+    color: var(--green);
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+}
+
+.highlight-grid span {
+    margin-top: 9px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.education-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.education-card h3 {
+    margin: 9px 0;
+    color: var(--text);
+}
+
+.education-card p {
+    color: var(--muted);
+}
+
+.education-card small,
+.education-year {
+    color: var(--green);
+}
+
+/* Project controls and visuals */
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0;
+}
+
+.filter-button {
+    padding: 8px 14px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.filter-button:hover,
+.filter-button:focus-visible,
+.filter-button.active {
+    color: var(--background);
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.project-card.is-hidden {
+    display: none;
+}
+
+.project-icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    place-items: center;
+    color: var(--blue);
+    background: rgba(88, 166, 255, 0.08);
+    border: 1px solid rgba(88, 166, 255, 0.35);
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.project-visual {
+    margin: 32px 0;
+}
+
+.project-visual img {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+.project-visual figcaption {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Accessible scroll reveal */
+
+.reveal-ready {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal-ready.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
 /* Project cards */
 
 .project-grid {
@@ -416,7 +562,7 @@ h3 {
 .project-icon {
     margin: 0;
     color: var(--blue);
-    font-size: 28px;
+    font-size: 11px;
     line-height: 1;
 }
 
@@ -614,6 +760,12 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .skill-categories,
+    .education-grid,
+    .highlight-grid {
+        grid-template-columns: 1fr;
+    }
+
     .terminal-content {
         padding: 30px 22px;
     }
@@ -653,6 +805,12 @@ footer p {
     .online-dot,
     .cursor {
         animation: none;
+    }
+
+    .reveal-ready {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 
     html {
