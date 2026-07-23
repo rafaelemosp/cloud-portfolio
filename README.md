@@ -3,18 +3,28 @@
 A responsive, terminal-inspired portfolio documenting my cloud computing,
 infrastructure and technical support learning journey.
 
+## Live website
+
+[https://rafaellemos.cloud](https://rafaellemos.cloud)
+
 ## Project status
 
-The website is deployed to Amazon S3. Every push to the `main` branch triggers
-an automatic deployment through GitHub Actions using secure AWS OIDC.
+The website is hosted in Amazon S3 and delivered globally through Amazon
+CloudFront with HTTPS and a custom Route 53 domain. Every push to the `main`
+branch triggers an automatic deployment through GitHub Actions using secure
+AWS OIDC, followed by a CloudFront cache invalidation.
 
 ## Technologies
 
 - HTML5
 - CSS3
 - JavaScript
-- Amazon S3 (planned hosting)
-- Git
+- Amazon S3
+- Amazon CloudFront
+- Amazon Route 53
+- AWS Certificate Manager
+- AWS IAM and GitHub OIDC
+- GitHub Actions
 
 ## Run locally
 
@@ -29,13 +39,13 @@ serve the project with any local static web server.
 - `projects/aws-portfolio.html` — AWS portfolio project details
 - `site.webmanifest` and favicon files — browser and install metadata
 
-## Deployment roadmap
+## Deployment architecture
 
-1. Complete the one-time GitHub and AWS deployment configuration.
-2. Enable and test Amazon S3 static website hosting.
-3. Add CloudFront for CDN delivery and HTTPS.
-4. Connect a custom domain with Route 53.
-5. Add a visitor counter using Lambda and DynamoDB.
+`GitHub -> GitHub Actions -> Amazon S3 -> Amazon CloudFront -> Route 53`
+
+The deployment uses short-lived AWS credentials, HTTPS, CloudFront caching,
+Route 53 DNS and automated cache invalidation. A serverless visitor counter
+using Lambda and DynamoDB is planned as a future enhancement.
 
 ## Automatic deployment
 
