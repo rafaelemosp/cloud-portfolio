@@ -23,6 +23,7 @@ AWS OIDC, followed by a CloudFront cache invalidation.
 - Amazon CloudFront
 - Amazon Route 53
 - AWS Certificate Manager
+- AWS Lambda and Amazon DynamoDB
 - AWS IAM and GitHub OIDC
 - GitHub Actions
 
@@ -44,8 +45,8 @@ serve the project with any local static web server.
 `GitHub -> GitHub Actions -> Amazon S3 -> Amazon CloudFront -> Route 53`
 
 The deployment uses short-lived AWS credentials, HTTPS, CloudFront caching,
-Route 53 DNS and automated cache invalidation. A serverless visitor counter
-using Lambda and DynamoDB is planned as a future enhancement.
+Route 53 DNS, automated cache invalidation and a serverless visitor counter
+using Lambda and DynamoDB.
 
 ## Automatic deployment
 

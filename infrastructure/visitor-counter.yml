@@ -1,0 +1,143 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Serverless visitor counter for Rafael Lemos's cloud portfolio.
+
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Default: https://rafaellemos.cloud
+    Description: Website origin allowed to call the counter.
+
+Resources:
+  VisitorCounterTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: rafael-cloud-portfolio-visitors
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      AttributeDefinitions:
+        - AttributeName: page
+          AttributeType: S
+      KeySchema:
+        - AttributeName: page
+          KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+
+  VisitorCounterRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: UpdatePortfolioVisitorCount
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:UpdateItem
+                Resource: !GetAtt VisitorCounterTable.Arn
+
+  VisitorCounterFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: rafael-cloud-portfolio-visitor-counter
+      Runtime: python3.13
+      Handler: index.handler
+      Role: !GetAtt VisitorCounterRole.Arn
+      Timeout: 5
+      MemorySize: 128
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref VisitorCounterTable
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+      Code:
+        ZipFile: |
+          import json
+          import os
+          import boto3
+
+          table = boto3.resource("dynamodb").Table(os.environ["TABLE_NAME"])
+          allowed_origin = os.environ["ALLOWED_ORIGIN"]
+
+          def handler(event, context):
+              headers = {
+                  "Access-Control-Allow-Origin": allowed_origin,
+                  "Access-Control-Allow-Headers": "content-type",
+                  "Access-Control-Allow-Methods": "POST,OPTIONS",
+                  "Content-Type": "application/json"
+              }
+
+              if event.get("requestContext", {}).get("http", {}).get("method") == "OPTIONS":
+                  return {"statusCode": 204, "headers": headers, "body": ""}
+
+              body = json.loads(event.get("body") or "{}")
+              page = body.get("page", "portfolio-home")
+
+              if page != "portfolio-home":
+                  return {
+                      "statusCode": 400,
+                      "headers": headers,
+                      "body": json.dumps({"message": "Invalid page"})
+                  }
+
+              result = table.update_item(
+                  Key={"page": page},
+                  UpdateExpression="ADD visits :one",
+                  ExpressionAttributeValues={":one": 1},
+                  ReturnValues="UPDATED_NEW"
+              )
+
+              count = int(result["Attributes"]["visits"])
+              return {
+                  "statusCode": 200,
+                  "headers": headers,
+                  "body": json.dumps({"count": count})
+              }
+
+  VisitorCounterFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !GetAtt VisitorCounterFunction.Arn
+      AuthType: NONE
+      Cors:
+        AllowCredentials: false
+        AllowHeaders:
+          - content-type
+        AllowMethods:
+          - POST
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        MaxAge: 3600
+
+  VisitorCounterFunctionUrlPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName: !Ref VisitorCounterFunction
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+
+  VisitorCounterInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref VisitorCounterFunction
+      InvokedViaFunctionUrl: true
+      Principal: "*"
+
+Outputs:
+  VisitorCounterEndpoint:
+    Description: Paste this value into the visitor-counter-endpoint meta tag in index.html.
+    Value: !GetAtt VisitorCounterFunctionUrl.FunctionUrl

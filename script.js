@@ -28,6 +28,65 @@ const reducedMotionQuery = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 );
 
+const visitorCountElement = document.getElementById("visitor-count");
+const visitorCountStatus = document.getElementById("visitor-count-status");
+const visitorCounterEndpoint = document
+    .querySelector('meta[name="visitor-counter-endpoint"]')
+    ?.getAttribute("content")
+    ?.trim();
+
+async function updateVisitorCount() {
+    if (!visitorCountElement || !visitorCountStatus) {
+        return;
+    }
+
+    if (!visitorCounterEndpoint) {
+        visitorCountElement.textContent = "Ready";
+        visitorCountStatus.textContent = "AWS counter awaiting endpoint";
+        return;
+    }
+
+    const sessionCount = sessionStorage.getItem("portfolio-visitor-count");
+
+    if (sessionCount) {
+        visitorCountElement.textContent = sessionCount;
+        visitorCountStatus.textContent = "Total visits recorded by AWS";
+        return;
+    }
+
+    try {
+        const response = await fetch(visitorCounterEndpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ page: "portfolio-home" })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Counter returned ${response.status}`);
+        }
+
+        const data = await response.json();
+        const count = Number(data.count);
+
+        if (!Number.isFinite(count) || count < 0) {
+            throw new Error("Counter returned an invalid value");
+        }
+
+        const formattedCount = new Intl.NumberFormat("en-AU").format(count);
+        visitorCountElement.textContent = formattedCount;
+        visitorCountStatus.textContent = "Total visits recorded by AWS";
+        sessionStorage.setItem("portfolio-visitor-count", formattedCount);
+    } catch (error) {
+        console.warn("Visitor counter unavailable:", error);
+        visitorCountElement.textContent = "Online";
+        visitorCountStatus.textContent = "Counter temporarily unavailable";
+    }
+}
+
+updateVisitorCount();
+
 const menuToggle = document.querySelector(".menu-toggle");
 const primaryNavigation = document.getElementById("primary-navigation");
 
