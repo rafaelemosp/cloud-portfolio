@@ -148,8 +148,11 @@ if (networkCanvas) {
     let animationFrameId;
     let startTime = performance.now();
 
-    const mapWidth = 1000;
-    const mapHeight = 500;
+    // Match the coordinate system of images/social-preview.png exactly.
+    // The background uses `background-size: cover` and `background-position: center`,
+    // so the animated network must use the same cover calculation.
+    const mapWidth = 1200;
+    const mapHeight = 630;
 
     const continents = [
         [[65, 105], [115, 65], [190, 70], [245, 115], [225, 175],
@@ -167,16 +170,16 @@ if (networkCanvas) {
     ];
 
     const hubs = [
-        { name: "Virginia", x: 205, y: 170, size: 5 },
-        { name: "California", x: 125, y: 185, size: 4 },
-        { name: "Sao Paulo", x: 265, y: 345, size: 4 },
-        { name: "Ireland", x: 465, y: 125, size: 5 },
-        { name: "Frankfurt", x: 505, y: 135, size: 4 },
-        { name: "Cape Town", x: 500, y: 350, size: 4 },
-        { name: "Mumbai", x: 685, y: 215, size: 4 },
-        { name: "Singapore", x: 770, y: 265, size: 5 },
-        { name: "Tokyo", x: 860, y: 165, size: 4 },
-        { name: "Sydney", x: 865, y: 355, size: 6 }
+        { name: "Virginia", x: 670, y: 238, size: 5 },
+        { name: "California", x: 585, y: 240, size: 4 },
+        { name: "Sao Paulo", x: 722, y: 414, size: 4 },
+        { name: "Ireland", x: 858, y: 212, size: 5 },
+        { name: "Frankfurt", x: 881, y: 214, size: 4 },
+        { name: "Cape Town", x: 885, y: 391, size: 4 },
+        { name: "Mumbai", x: 1000, y: 301, size: 4 },
+        { name: "Singapore", x: 1060, y: 351, size: 5 },
+        { name: "Tokyo", x: 1120, y: 254, size: 4 },
+        { name: "Sydney", x: 1141, y: 438, size: 6 }
     ];
 
     const routes = [
@@ -186,20 +189,12 @@ if (networkCanvas) {
     ];
 
     function getMapLayout() {
-        const isWideScreen = width >= 900;
-        const availableWidth = width * (isWideScreen ? 0.72 : 0.96);
-        const availableHeight = height * (isWideScreen ? 0.74 : 0.7);
-        const scale = Math.min(
-            availableWidth / mapWidth,
-            availableHeight / mapHeight
-        );
+        const scale = Math.max(width / mapWidth, height / mapHeight);
 
         return {
             scale,
-            offsetX: isWideScreen
-                ? width * 0.34
-                : (width - mapWidth * scale) / 2,
-            offsetY: height * (isWideScreen ? 0.12 : 0.18)
+            offsetX: (width - mapWidth * scale) / 2,
+            offsetY: (height - mapHeight * scale) / 2
         };
     }
 
