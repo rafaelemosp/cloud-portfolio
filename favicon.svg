@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Rafael Lemos cloud portfolio</title>
+  <rect width="512" height="512" rx="104" fill="#0d1117"/>
+  <path d="M122 218c8-62 59-108 122-108 47 0 89 27 109 68 8-3 17-4 26-4 48 0 87 39 87 87 0 44-33 80-75 86H123c-43-6-76-43-76-87 0-45 33-82 75-88z"
+        fill="none" stroke="#58a6ff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M174 184h91c58 0 96 31 96 82 0 35-20 62-53 74l65 88h-67l-56-78h-21v78h-55V184zm55 49v70h34c27 0 42-13 42-35 0-23-15-35-42-35h-34z"
+        fill="#f0f6fc"/>
+  <circle cx="389" cy="377" r="45" fill="#0d1117"/>
+  <circle cx="389" cy="377" r="29" fill="#7ee787"/>
+</svg>
