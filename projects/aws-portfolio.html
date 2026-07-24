@@ -40,13 +40,13 @@
             <h1>AWS Cloud Portfolio</h1>
 
             <p class="hero-text">
-                A terminal-inspired personal portfolio created while learning
-                web development, cloud infrastructure and Amazon Web Services.
+                A secure, globally delivered cloud portfolio with automated
+                deployment, a custom HTTPS domain and a serverless visitor counter.
             </p>
 
             <figure class="project-visual">
-                <img src="../images/projects/aws-deployment.svg" alt="GitHub Actions deployment flow from the repository through secure AWS OIDC authentication to an Amazon S3 website">
-                <figcaption>Automated deployment architecture: GitHub → GitHub Actions and OIDC → Amazon S3.</figcaption>
+                <img src="../images/projects/aws-deployment.svg" alt="GitHub Actions deployment flow from the repository through secure AWS OIDC authentication to the AWS-hosted portfolio">
+                <figcaption>Automated delivery: GitHub and OIDC → Amazon S3 → CloudFront and Route 53, with Lambda and DynamoDB powering the visitor counter.</figcaption>
             </figure>
 
             <div class="journey-box">
@@ -59,8 +59,11 @@
                 </p>
 
                 <p>
-                    The website is deployed automatically to Amazon S3 from the
-                    main GitHub branch using GitHub Actions and secure AWS OIDC.
+                    The production website is available at
+                    <a href="https://rafaellemos.cloud" target="_blank" rel="noopener noreferrer">rafaellemos.cloud</a>.
+                    Every push to the main GitHub branch deploys automatically to
+                    Amazon S3 using secure AWS OIDC authentication, followed by a
+                    CloudFront cache invalidation.
                 </p>
             </div>
 
@@ -73,6 +76,13 @@
                     <span>JavaScript</span>
                     <span>Visual Studio Code</span>
                     <span>Amazon S3</span>
+                    <span>Amazon CloudFront</span>
+                    <span>Amazon Route 53</span>
+                    <span>AWS Certificate Manager</span>
+                    <span>AWS IAM &amp; OIDC</span>
+                    <span>GitHub Actions</span>
+                    <span>AWS Lambda</span>
+                    <span>Amazon DynamoDB</span>
                 </div>
             </div>
 
@@ -90,8 +100,9 @@
                 </p>
 
                 <p>
-                    Deploy the finished website to AWS and gradually add
-                    services such as CloudFront, Route 53 and a visitor counter.
+                    Deploy the website as a secure, globally accessible AWS
+                    solution with automated delivery, cost monitoring and a
+                    persistent serverless visitor counter.
                 </p>
             </div>
 
@@ -105,17 +116,22 @@
                 <p>✓ Created responsive project cards</p>
                 <p>✓ Created an AWS account and IAM administrator</p>
                 <p>✓ Created an Amazon S3 portfolio bucket</p>
+                <p>✓ Automated deployments with GitHub Actions</p>
+                <p>✓ Secured GitHub authentication with AWS OIDC</p>
+                <p>✓ Delivered the site globally with CloudFront and HTTPS</p>
+                <p>✓ Registered and configured rafaellemos.cloud with Route 53</p>
+                <p>✓ Restricted the S3 origin to CloudFront access</p>
+                <p>✓ Built a visitor counter with Lambda and DynamoDB</p>
+                <p>✓ Added AWS cost monitoring and a zero-spend budget</p>
             </div>
 
             <div class="journey-box">
                 <h2>Next Steps</h2>
 
-                <p>✓ Upload the website files to Amazon S3</p>
-                <p>✓ Configure automatic GitHub Actions deployment</p>
-                <p>✓ Secure AWS authentication with GitHub OIDC</p>
-                <p>→ Add CloudFront and HTTPS</p>
-                <p>→ Add a custom domain</p>
-                <p>→ Add a visitor counter using Lambda and DynamoDB</p>
+                <p>→ Add CloudWatch monitoring for Lambda errors</p>
+                <p>→ Add automated infrastructure deployment with Terraform</p>
+                <p>→ Improve visitor analytics while preserving privacy</p>
+                <p>→ Continue documenting AWS architecture and lessons learned</p>
             </div>
 
             <div class="hero-buttons">
