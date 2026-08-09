@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Reiki Bodywork Odoo platform architecture</title>
+  <desc id="desc">Customer journey through a responsive Odoo website to appointments, Stripe payments, customer records, invoices and administration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081322"/><stop offset="1" stop-color="#111a27"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L9 3 0 6Z" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1200" height="620" rx="24" fill="url(#bg)"/>
+  <g fill="none" stroke="#58a6ff" stroke-width="3" opacity=".75" marker-end="url(#arrow)"><path d="M245 310H430"/><path d="M650 310H760"/><path d="M870 260V170"/><path d="M870 360V455"/></g>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" text-anchor="middle">
+    <g transform="translate(65 230)"><rect width="180" height="160" rx="18" fill="#161f2a" stroke="#303b49"/><circle cx="90" cy="50" r="22" fill="#58a6ff" opacity=".18" stroke="#58a6ff"/><path d="M78 50h24M90 38v24" stroke="#58a6ff" stroke-width="4"/><text x="90" y="105" fill="#e6edf3" font-size="22" font-weight="700">CUSTOMER</text><text x="90" y="132" fill="#8b949e" font-size="14">discover &amp; book</text></g>
+    <g transform="translate(430 190)"><rect width="220" height="240" rx="22" fill="#201a24" stroke="#a35b91" stroke-width="2" filter="url(#glow)"/><text x="110" y="72" fill="#c98bb9" font-size="44" font-weight="700">ODOO</text><text x="110" y="112" fill="#f0e6ee" font-size="20" font-weight="700">REIKI BODYWORK</text><line x1="40" y1="137" x2="180" y2="137" stroke="#a35b91"/><text x="110" y="172" fill="#d9c9d5" font-size="16">responsive website</text><text x="110" y="199" fill="#d9c9d5" font-size="16">connected workflow</text></g>
+    <g transform="translate(760 90)"><rect width="220" height="140" rx="18" fill="#161f2a" stroke="#7ee787"/><text x="110" y="52" fill="#7ee787" font-size="19" font-weight="700">APPOINTMENTS</text><text x="110" y="83" fill="#e6edf3" font-size="15">services &amp; availability</text><text x="110" y="108" fill="#8b949e" font-size="14">calendar-ready booking</text></g>
+    <g transform="translate(760 240)"><rect width="220" height="140" rx="18" fill="#161f2a" stroke="#58a6ff"/><text x="110" y="48" fill="#58a6ff" font-size="19" font-weight="700">STRIPE</text><text x="110" y="79" fill="#e6edf3" font-size="15">card &amp; digital wallets</text><text x="110" y="105" fill="#8b949e" font-size="14">secure online checkout</text></g>
+    <g transform="translate(760 390)"><rect width="220" height="140" rx="18" fill="#161f2a" stroke="#d29922"/><text x="110" y="48" fill="#e3b341" font-size="19" font-weight="700">CUSTOMER RECORDS</text><text x="110" y="79" fill="#e6edf3" font-size="15">sales &amp; invoices</text><text x="110" y="105" fill="#8b949e" font-size="14">connected client history</text></g>
+    <g transform="translate(1020 240)"><rect width="130" height="140" rx="18" fill="#161f2a" stroke="#303b49"/><text x="65" y="49" fill="#e6edf3" font-size="17" font-weight="700">OWNER</text><text x="65" y="80" fill="#8b949e" font-size="13">one place to</text><text x="65" y="102" fill="#8b949e" font-size="13">manage it all</text></g>
+  </g>
+  <path d="M980 310H1020" stroke="#58a6ff" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="600" y="574" fill="#7ee787" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="16" text-anchor="middle">WEBSITE  →  BOOKING  →  PAYMENT  →  CUSTOMER MANAGEMENT</text>
+</svg>

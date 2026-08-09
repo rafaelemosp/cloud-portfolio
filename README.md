@@ -1,7 +1,7 @@
 # Rafael Lemos Cloud Portfolio
 
 A responsive, terminal-inspired portfolio documenting my cloud computing,
-infrastructure and technical support learning journey.
+infrastructure, business systems and technical support learning journey.
 
 ## Live website
 
@@ -26,6 +26,8 @@ AWS OIDC, followed by a CloudFront cache invalidation.
 - AWS Lambda and Amazon DynamoDB
 - AWS IAM and GitHub OIDC
 - GitHub Actions
+- Odoo business platform configuration
+- Online booking, payments and invoicing workflows
 
 ## Run locally
 
@@ -38,6 +40,7 @@ serve the project with any local static web server.
 - `style.css` — layout, responsive styling and animations
 - `script.js` — typing effect and animated network background
 - `projects/aws-portfolio.html` — AWS portfolio project details
+- `projects/reiki-bodywork-odoo.html` — live Odoo business platform case study
 - `site.webmanifest` and favicon files — browser and install metadata
 
 ## Deployment architecture

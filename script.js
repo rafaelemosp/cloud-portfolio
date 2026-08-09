@@ -432,7 +432,7 @@ const filterButtons = Array.from(
     document.querySelectorAll(".filter-button[data-filter]")
 );
 
-const projectIconLabels = ["AWS", "SRV", "COM", "NET", "SEC", "ICT"];
+const projectIconLabels = ["ODOO", "AWS", "SRV", "COM", "NET", "SEC", "ICT"];
 
 projectCards.forEach((card, cardIndex) => {
     const icon = card.querySelector(".project-icon");
