@@ -72,9 +72,9 @@ def role(c, title, organisation, dates, x, y, width, bullets):
 
 c = canvas.Canvas(OUTPUT, pagesize=A4)
 page_w, page_h = A4
-c.setTitle("Rafael Lemos - Apple Specialist and Cloud Engineering Resume")
+c.setTitle("Rafael Lemos - Apple Technical Specialist and Cloud Engineering Resume")
 c.setAuthor("Rafael Lemos")
-c.setSubject("Apple Specialist, Cloud Engineering, Customer Success and IT Support Resume")
+c.setSubject("Apple Technical Specialist, Cloud Engineering, Customer Success and IT Support Resume")
 
 c.setFillColor(NAVY)
 c.rect(0, 0, page_w, page_h, fill=1, stroke=0)
@@ -89,7 +89,7 @@ c.setFont("Helvetica-Bold", 25)
 c.drawString(220, page_h - 54, "Rafael Lemos")
 c.setFillColor(GREEN)
 c.setFont("Helvetica-Bold", 11)
-c.drawString(220, page_h - 74, "APPLE SPECIALIST · CLOUD ENGINEERING")
+c.drawString(220, page_h - 74, "APPLE TECHNICAL SPECIALIST · CLOUD ENGINEERING")
 c.setFillColor(MUTED)
 c.setFont("Helvetica", 8.5)
 c.drawString(220, page_h - 90, "Customer Success · Technical Support · AWS · Infrastructure")
@@ -147,13 +147,13 @@ ly = paragraph(c, "English · Portuguese", lx, ly, lw, 8, 10, TEXT)
 # Main column
 mx, mw, my = 220, page_w - 254, page_h - 126
 my = heading(c, "Profile", mx, my, mw)
-profile = ("Apple Specialist, qualified physiotherapist and customer-focused professional developing a career in cloud engineering and technology. "
+profile = ("Apple Technical Specialist, qualified physiotherapist and customer-focused professional developing a career in cloud engineering and technology. "
            "Combines customer-facing technology, healthcare, team leadership and technical-support experience with clear communication, relationship building and calm problem-solving. "
            "Develops practical AWS, infrastructure, Linux, Windows Server and networking capability through hands-on projects.")
 my = paragraph(c, profile, mx, my, mw, 8.3, 11.2, TEXT)
 
 my = heading(c, "Experience", mx, my - 12, mw)
-my = role(c, "Specialist", "Apple", "JUL 2026-PRESENT", mx, my, mw, [
+my = role(c, "Technical Specialist", "Apple", "JUL 2026-PRESENT", mx, my, mw, [
     "Working in a customer-facing technology role while continuing Cloud Engineering studies."
 ])
 my = role(c, "Hospital Pathology Collector", "Sullivan Nicolaides Pathology", "2023-2025", mx, my, mw, [
